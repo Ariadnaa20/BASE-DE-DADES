@@ -1,0 +1,36 @@
+les subconsultas es fan en el where i el having 
+2 tipus:
+
+SIMPLES: tornen un resultat 
+
+SELECT DISTINCT(a.DNI) FROM alumno AS a, estudia AS e1 
+WHERE a.DNI = e1.DNI AND e1.nota = (SELECT MAX(e2.nota) FROM estudia AS e2);  .  --e2 es per dir que es es subconsulta al final el = es una comparacio booleana que torna 1  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COMPLEXES: tornen mes d'un resultat
+-IN:
+SELECT a.DNI, a.nombre FROM alumno AS a, estudia AS e
+WHERE a.DNI = e.DNI
+GROUP BY a.DNI;
+
+
+SELECT a.DNI, a.nombre FROM alumno AS a
+WHERE a.DNI IN (SELECT e.DNI FROM estudia AS e   el dni esta dins d'una array i la recorrem e¡amb IN
+WHERE e.DNI = a.DNI);
+
+-ANY 
+-ALL
+-EXISTS
