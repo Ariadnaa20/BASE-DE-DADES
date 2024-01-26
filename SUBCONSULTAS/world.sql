@@ -1,7 +1,7 @@
 
 --1- Mostra totes les regions del planeta i el nombre d'idiomes que es parlen a cada una d'elles ordenat alfabèticament pel nom de la regió. (group by i join)
 SELECT 
-
+/*a veure si va be*/
 --2- Mostrar el districte de la ciutat amb més població. (subquery)
 
 --3- Mostrar codi, nom i continent del país de mida més petita. (subquery)
