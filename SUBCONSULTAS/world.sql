@@ -1,14 +1,34 @@
 
 --1- Mostra totes les regions del planeta i el nombre d'idiomes que es parlen a cada una d'elles ordenat alfabèticament pel nom de la regió. (group by i join)
-SELECT 
-/*a veure si va be*/
+SELECT c.Region, COUNT(cl.Language) as Num_Idiomes 
+FROM Country as c JOIN CountryLanguage as cl
+ON c.Code= cl.CountryCode
+GROUP BY c.Region
+ORDER BY c.Region ASC 
+
+
 --2- Mostrar el districte de la ciutat amb més població. (subquery)
+SELECT District FROM City 
+WHERE Population= (SELECT MAX(Population) FROM City)
 
 --3- Mostrar codi, nom i continent del país de mida més petita. (subquery)
 
+SELECT Code, Name, Continent FROM Country
+WHERE SurfaceArea= (SELECT MIN(SurfaceArea) FROM Country)
+
 --4- Calcula l'idioma més parlat a cada país. Mostra nom de país i idioma ordenat per país i idioma. (group by i join entre countrylanguage i country)
 
---5- Mostra el nom del país on hi ha la ciutat amb menys població. (subquery)
+SELECT c.Name, cl.Language FROM Country as c JOIN countrylanguage as cl
+ON c.Code = cl.CountryCode 
+WHERE cl.Percentage = 
+(SELECT MAX(cl2.Language) FROM CountryLanguage as Cl2 )
+GROUP BY c.Name, cl.Language
+
+
+--5- Mostra el nom del país on hi ha la ciutat amb menys població. (subquery) /*em torna 5*/
+
+SELECT c.Name FROM Country as c 
+WHERE c.Population = (SELECT MIN(c2.Population) FROM Country as c2)
 
 
 
