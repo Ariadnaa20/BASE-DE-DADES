@@ -30,7 +30,12 @@ GROUP BY a.DNI;
 SELECT a.DNI, a.nombre FROM alumno AS a
 WHERE a.DNI IN (SELECT e.DNI FROM estudia AS e   el dni esta dins d'una array i la recorrem e¡amb IN
 WHERE e.DNI = a.DNI);
+INTERSECT= IN
+MINUS= NOT IN
 
--ANY 
--ALL
+-ANY :es el excepto.
+sempre han d'anar amb un where<> o != afegir condicio que m'excolh¡gui la meva fila
+
+
+-ALL: hem de mirar si ens torna mes resultats sera una funcio. 
 -EXISTS

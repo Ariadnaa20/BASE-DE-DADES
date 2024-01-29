@@ -3,40 +3,41 @@
 SELECT c.Region, COUNT(cl.Language) as Num_Idiomes 
 FROM Country as c JOIN CountryLanguage as cl
 ON c.Code= cl.CountryCode
-GROUP BY c.Region
-ORDER BY c.Region ASC 
+GROUP BY c.Region  /*per algo*/
+ORDER BY c.Region ASC ;
 
 
---2- Mostrar el districte de la ciutat amb més població. (subquery)
-SELECT District FROM City 
-WHERE Population= (SELECT MAX(Population) FROM City)
+--2- Mostrar el districte de la ciutat amb més població. (subquery) /*el que mes o el que menys sempre amb subquery*/
+SELECT c1.District, c1.Name FROM City as c1
+WHERE c1.Population= (SELECT MAX(c2.Population) FROM City as c2)
 
 --3- Mostrar codi, nom i continent del país de mida més petita. (subquery)
 
-SELECT Code, Name, Continent FROM Country
-WHERE SurfaceArea= (SELECT MIN(SurfaceArea) FROM Country)
+SELECT c1.Code, c1.Name, c1.Continent FROM Country as c1
+WHERE c1.SurfaceArea= (SELECT MIN(c2.SurfaceArea) FROM Country as c2 ) /*si es un igual (=) sera subconsulta simple i*/
 
 --4- Calcula l'idioma més parlat a cada país. Mostra nom de país i idioma ordenat per país i idioma. (group by i join entre countrylanguage i country)
 
 SELECT c.Name, cl.Language FROM Country as c JOIN countrylanguage as cl
-ON c.Code = cl.CountryCode 
+ON c.Code = cl.CountryCode AND
 WHERE cl.Percentage = 
-(SELECT MAX(cl2.Language) FROM CountryLanguage as Cl2 )
+(SELECT MAX(cl2.Language) FROM CountryLanguage as cl2 WHERE c2.CountryCode=cl.CountryCode )
 GROUP BY c.Name, cl.Language
+ORDER BY c.name, cl.Language
 
 
 --5- Mostra el nom del país on hi ha la ciutat amb menys població. (subquery) /*em torna 5*/
 
-SELECT c.Name FROM Country as c 
-WHERE c.Population = (SELECT MIN(c2.Population) FROM Country as c2)
+SELECT c.Name FROM Country as c, city AS ci WHERE c.code =ci.CountryCode 
+AND ci.population = (SELECT MIN(ci2.Population) FROM Country as ci2)
 
-
-
-
-
+SELECT c.name FROM country as c, city as ci WHERE c.code = ci.CountryCode 
+AND ci.population <= ALL (SELECT ci2.population FROM city as ci2)
 
 
 --6- Mostra el nom (o noms) del país (o països) on es parlen el més idiomes. (group by per tal de contar el nombre d'idiomes diferents que es parlen per país i subquery per trobar el nom del país)
+
+
 
 --7- Mostra els idiomes que es parlen en el país amb més superfície de terreny. (subquery)
 
