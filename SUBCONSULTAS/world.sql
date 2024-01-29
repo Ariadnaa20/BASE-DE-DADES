@@ -29,7 +29,7 @@ ORDER BY c.name, cl.Language
 --5- Mostra el nom del país on hi ha la ciutat amb menys població. (subquery) /*em torna 5*/
 
 SELECT c.Name FROM Country as c, city AS ci WHERE c.code =ci.CountryCode 
-AND ci.population = (SELECT MIN(ci2.Population) FROM Country as ci2)
+AND ci.population = (SELECT MI9N(ci2.Population) FROM Country as ci2)
 
 SELECT c.name FROM country as c, city as ci WHERE c.code = ci.CountryCode 
 AND ci.population <= ALL (SELECT ci2.population FROM city as ci2);
