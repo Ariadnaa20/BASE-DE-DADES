@@ -32,7 +32,7 @@ SELECT c.Name FROM Country as c, city AS ci WHERE c.code =ci.CountryCode
 AND ci.population = (SELECT MIN(ci2.Population) FROM Country as ci2)
 
 SELECT c.name FROM country as c, city as ci WHERE c.code = ci.CountryCode 
-AND ci.population <= ALL (SELECT ci2.population FROM city as ci2)
+AND ci.population <= ALL (SELECT ci2.population FROM city as ci2);
 
 
 --6- Mostra el nom (o noms) del país (o països) on es parlen el més idiomes. (group by per tal de contar el nombre d'idiomes diferents que es parlen per país i subquery per trobar el nom del país)
