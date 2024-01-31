@@ -38,18 +38,51 @@ AND ci.population <= ALL (SELECT ci2.population FROM city as ci2);
 --6- Mostra el nom (o noms) del país (o països) on es parlen el més idiomes. (group by per tal de contar el nombre d'idiomes diferents que es parlen per país i subquery per trobar el nom del país)
 
 
+SELECT c.Name FROM Country c
+JOIN CountryLanguage cl ON c.Code = cl.CountryCode
+GROUP BY c.Code, c.Name
+HAVING COUNT(DISTINCT cl.Language) 
+
+/*acabarla*/
+
 
 --7- Mostra els idiomes que es parlen en el país amb més superfície de terreny. (subquery)
 
+SELECT COUNT(DISTINCT(cl.Language)) FROM CountryLanguage as cl 
+JOIN Country as c 
+ON cl.CountryCode = c.Code 
+WHERE c.SurfaceArea =  (SELECT MAX(c2.SurfaceArea) FROM Country as c2);
+
 --8- Mostra el districte de ciutat on es parlen més idiomes. (subquery)
+
+SELECT c.district FROM City as c
+JOIN CountryLanguage as cl ON c.CountryCode = cl.CountryCode
+WHERE cl.Language = 
+( SELECT Language FROM CountryLanguage as cl2
+    GROUP BY Language
+    ORDER BY COUNT(DISTINCT CountryCode) DESC
+    LIMIT 1
+);
 
 --9- Mostra el nom del país (o països) on es parlen més idiomes oficials. (subquery i join)
 
+SELECT c.Name FROM Country as c JOIN CountryLanguage as cl
+WHERE cl.Language =  
+   (SELECT CountryCode, COUNT(Language) AS OfficialLanguageCount
+    FROM CountryLanguage
+    WHERE IsOfficial = 'T'
+    GROUP BY CountryCode)
+
 --10- Mostra el nom de totes les ciutats del país (o països) que es va independitzar fa més temps. (subquery)
+
 
 --11- El districte amb més ciutats (subquery)
 
+
 --12- Els paisos on totes les seves ciutats (de la nostra BBDD) tinguin mes de 200.000 habitants.
+
+
+
 
 --13- Totes les ciutats del Carib (tot i que e spot fer sense subconsulta, pensa una forma de fer-ho amb subquerys).
 
