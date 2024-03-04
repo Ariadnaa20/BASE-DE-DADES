@@ -15,7 +15,7 @@ CREATE TABLE usuario(
 DROP TABLE IF EXISTS subscritor;
 CREATE TABLE subscritor(
 	id_subscritor INT,
-	es_asociado BOOLEAN,
+	es_asociado BOOLEAN DEFAULT FALSE,
 	PRIMARY KEY (id_subscritor)
 );
 

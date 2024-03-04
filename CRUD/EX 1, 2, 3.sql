@@ -24,7 +24,7 @@ UPDATE Federacion SET fecha_creacion = CURRENT_DATE() WHERE nombre_federacion='F
 
 --d)	Borra el valor nombre_TV de la competición ‘Champions’. borrar nomes un camp de la champions i deixarlo a nul borrem valor d'una columna
 DELETE FROM Competicion WHERE nombre_TV = Champions’ ;
-UPDATE competicion 
+UPDATE competicion SET nombre_TV = NULL;
 --e)	Borra todas las clasificaciones. borrar filas sencerasd
 DELETE FROM Clasificacion
 

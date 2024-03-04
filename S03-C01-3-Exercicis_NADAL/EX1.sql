@@ -42,5 +42,5 @@ CREATE TABLE Clasificacion(
 );
 
 <!-- no te dejes el references de FOREGEIN KEY-->
-<!-- PREGUNTAR AL PROFE: tengo que poner not null tambien en una pk?-->
+<!-- PREGUNTAR AL PROFE: tengo que poner not null tambien en una pk? No porque de por si no te deja-->
 

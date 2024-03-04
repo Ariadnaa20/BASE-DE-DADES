@@ -1,7 +1,6 @@
 EXERICI 1
 
 
-
 --Realiza las siguientes consultas:
 --a)	Selecciona el identificador de las temporadas que han empezado entre el 2010 y el 2015.
 SELECT id_temporada FROM temporada WHERE YEAR(fecha_inicio) BETWEEN 2010 AND 2015;

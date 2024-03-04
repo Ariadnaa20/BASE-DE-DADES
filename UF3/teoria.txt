@@ -1,0 +1,138 @@
+CARREGAR DADES TAULA A FITXER
+EL SELECT INTO :
+-guardar els valors en variables SELECT INTO <nom_vairable> FROM guardem el resultat del select en la variable 
+
+variables:
+SELECT dni INTO @var1 FROM Persona WHERE id=1.
+ha d'ahver el where ja que en la variable nimes pot haver un valor 
+
+
+SELECT INTO OUTFILE :
+-guardar els valors resultats de la comanda en un fitxer SELECT INTO OUTFILE nomfitxer
+
+SELECT nombre, apellido INTO OUTFILE 'C:/resultado_ejemplo.txt' --abusoluta
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+LINES TERMINATED BY ';' FROM alumno;
+
+FIELDS TERMINATED BY ': campos terminados i posar comes
+OPTIONALLY ENCLOSED BY '"' els camps de text tels posara en numero 
+LINES TERMINATED BY ';' el salt de linea 
+
+/t tabulador
+/n salto de linea /n/r
+' ' o ' " ' 
+null: /N  
+
+LA RUTA:
+la guardem en descargas 
+hi han 2 la relativa i la absoluta 
+per veure on esta giardat un fitxer de ruta relativa utlitzem : @@datadir 
+causules opcions: fields(columnes) encolsed y LINES
+
+CARREGAR DADES FIXER A TAULA
+cuidado: la taula ha de estar creada i tenir columnes
+LOAD DATA INFILE <ruta/nombre_del_fichero> INTO TABLE <nombre_de_la_tabla>
+
+LOAD DATA INFILE <ruta/nombre_del_fichero> INTO TABLE <nombre_de_la tabla> FIELDS TERMINATED BY '\t' 
+ENCLOSED BY '' LINES TERMINATED BY '\n'
+
+
+SELECT DISTINCT(Name) INTO @nom_països FROM Country.
+
+
+
+D2
+
+CREATE LIKE replicar taules 
+CREATE TABLE taula_nova LIKE taula_vieja ;
+
+CREATE DATABASE northwind_ariadna
+USE northwind_ariadna;
+       
+
+SI HO VOLEM CREAR TOT A LA VEGADA
+INSERT INTO northwind_ariadna SELECT * FROM northwind; 
+
+SI VOLEM CREAR TAULA PER TAULA
+CREATE TABLE bkp_categories LIKE northwind.categories;
+CREATE TABLE bkp_customercustomerdemo LIKE northwind.customercustomerdemo;
+CREATE TABLE bkp_customerdemographics LIKE northwind.customerdemographics;
+CREATE TABLE bkp_customers LIKE northwind.customers;
+CREATE TABLE bkp_employees LIKE northwind.employees;
+CREATE TABLE bkp_employeeterritories LIKE northwind.employeeterritories;
+CREATE TABLE bkp_orderdetails LIKE northwind.orderdetails;
+CREATE TABLE bkp_orders LIKE northwind.orders;
+CREATE TABLE bkp_products LIKE northwind.products;
+CREATE TABLE bkp_region LIKE northwind.region;
+CREATE TABLE bkp_shippers LIKE northwind.shippers;
+CREATE TABLE bkp_suppliers LIKE northwind.suppliers;
+CREATE TABLE bkp_territories LIKE northwind.territories;
+
+ARA VOLEM COPIAR TOTA LA INFO DE LES TAULES 
+INSERT INTO northwind_ariadna.bkp_categories SELECT * FROM northwind.categories;
+INSERT INTO northwind_ariadna.bkp_customercustomerdemo SELECT * FROM northwind.customercustomerdemo;
+INSERT INTO northwind_ariadna.bkp_customerdemographics SELECT * FROM northwind.customerdemographics;
+INSERT INTO northwind_ariadna.bkp_customers SELECT * FROM northwind.customers;
+INSERT INTO northwind_ariadna.bkp_employees SELECT * FROM northwind.employees;
+INSERT INTO northwind_ariadna.bkp_employeeterritories SELECT * FROM northwind.employeeterritories;
+INSERT INTO northwind_ariadna.bkp_orderdetails SELECT * FROM northwind.orderdetails;
+INSERT INTO northwind_ariadna.bkp_orders SELECT * FROM northwind.orders;
+INSERT INTO northwind_ariadna.bkp_products SELECT * FROM northwind.products;
+INSERT INTO northwind_ariadna.bkp_region SELECT * FROM northwind.region;
+INSERT INTO northwind_ariadna.bkp_shippers SELECT * FROM northwind.shippers;
+INSERT INTO northwind_ariadna.bkp_suppliers SELECT * FROM northwind.suppliers;
+INSERT INTO northwind_ariadna.bkp_territories SELECT * FROM northwind.territories;
+
+2.. insert into select 
+
+
+HERRAMINETAS COMPLEMENTARIAS
+
+Delimitador
+;
+$$ 
+DELIMITER ~~
+
+DROP PROCEDURE IF EXISTS pHelloWorld ~~
+
+CREATE PROCEDURE pHelloWorld (IN vName varchar(15))
+BEGIN
+SET @aux = CONCAT ("Hello ",vName);
+SELECT @aux;
+END ~~
+
+DELIMITER ;
+
+CALL pHelloWorld("NomAlumne");
+
+
+VARIABLES 
+-declaradas 
+-no declaradas 
+
+-actualizar el valor con SET 
+
+SENTANCIAS DINAMICAS 
+SET 
+PREPARE (nom variable per executar)FROM varibale 
+EXECUTE variable
+DEALLOCATE PREPARE nom_variable 
+funcions procediments if case 
+
+PARAMETRES 
+IN  entro
+OUT salgo
+INOUT entro i salgo 
+IN vid INTEGER 
+OUT vfecha DATE 
+INOUT vcadena VARCHAR(50)
+
+PROCEDIMENTS PARAMETRES BUCLES CONDICIONALS 
+SELECT 'opcion_if' es un system out 
+
+Los loops puedes poner la condicion al prinicipio como for i while o al final como el do while 
+el de incremento ha de ser la variable integer 
+sempre posar en el loop un if i dins un leave 
+
+
+

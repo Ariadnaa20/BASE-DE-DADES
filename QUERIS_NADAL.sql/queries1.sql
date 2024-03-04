@@ -23,7 +23,7 @@ SELECT * FROM Orders WHERE EmployeeID = 4 AND YEAR(OrderDate) = 1996 AND MONTH(O
 
 SELECT DISTINCT City FROM Customers;
 
---Buscar quin es el supplier (nom i telefon) que ens ven el producte més barat. (2 selects)
+--Buscar quin es el supplier (nom i telefon) que ens ven el producte més barat. (2 selects)?
 
 SELECT ContactName, Phone FROM Suppliers WHERE Products 
 SELECT 
