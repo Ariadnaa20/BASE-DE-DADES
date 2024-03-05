@@ -5,7 +5,7 @@ dispones de ninguna, crea una con al menos 3 tablas, 3 atributos por tabla e ins
 en un fichero llamado nombre_tablas.txt: */
 
 
-SELECT suppliers, employees, employeeterritories -- aixi estaria malament ja que no existeixen. Hauria de ser tableName 
+SELECT suppliers, employees, employeeterritories -- aixi estaria malament ja que no existeixen. Hauria de ser table_name 
 INTO OUTFILE 'C:/Users/aripa/Downloads/UF3-baseDades/nombre_tablas.txt'
 LINES TERMINATED BY ';\n'
 FROM information_schema.TABLES
@@ -60,7 +60,7 @@ INSERT INTO northwind_ariadna.bkp_territories SELECT * FROM northwind.territorie
 con el nombre de cada país y el porcentaje de habitantes que cada uno tiene sobre el total.*/
 
 SELECT nombre_pais,
-       habitantes / (SELECT SUM(habitantes) FROM pais) * 100 AS porcentaje_habitantes
+       habitantes / (SELECT SUM(ROUND(habitantes) FROM pais) * 100,2) AS porcentaje_habitantes
 INTO OUTFILE 'C:/Users/aripa/Downloads/UF3-baseDades/nomPais_PorcentatgeHabitants.txt'
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
@@ -72,13 +72,16 @@ FROM pais;
 /*Para una base de datos con la tabla de cuentas bancarias (numero_cuenta (PK), saldo) devuelve en 
 un archivo aquellos números de cuenta que estén en números rojos junto con su saldo 
 correspondiente*/
+--CREA LA TAULA I INSERTO INFO 
 
-SELECT c.num_conta, c.Saldo FROM Cuentas as c 
-WHERE c.Saldo<0 
+--ENTRE EL SELECT I EL FROM VA EL FITXER
+SELECT c.num_conta, c.Saldo 
 INTO OUTFILE 'C:/Users/aripa/Downloads/UF3-baseDades/numConta_Saldo.txt'
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
-LINES TERMINATED BY '\n';
+LINES TERMINATED BY '\n'
+FROM Cuentas as c 
+WHERE c.Saldo<0 ;
 
 --EXERCICI 5
 /*Crea una tabla para insertar todas las combinaciones posibles de nombre, apellido y segundo 
