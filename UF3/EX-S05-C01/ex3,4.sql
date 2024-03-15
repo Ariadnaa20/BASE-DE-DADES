@@ -17,7 +17,7 @@ END $$
 DELIMITER ;
 
 CALL preuFinal(100.00, 21.00, @preuFinalOutput); --es @ pq es una variable d'usuaro
-SELECT @preuFinalOutput;
+SELECT @resultat;
 
 
 DELIMITER $$
@@ -39,6 +39,8 @@ BEGIN
     FROM CountryLanguage as cl
     JOIN Country as c ON cl.CountryCode = c.Code
     WHERE cl.Language = 'Spanish' AND cl.IsOfficial = 'T';
+
+    /*WHERE co.Code = cl.contrycode AND cl.language = idioma*/
 END$$
 
 DELIMITER ;
