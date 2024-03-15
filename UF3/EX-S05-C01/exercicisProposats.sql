@@ -123,9 +123,42 @@ Aquests dos valors també s'han de passar com a paràmetres de sortida */
 
 /*7. A la BD World, crea un procedure que permeti exportar les dades de la taula CountryLanguage. 
 El nom del fitxer ha de ser passat per paràmetre a gust de l'usuari.*/
+DELIMITER $$
+CREATE PROCEDURE 
 
 /*8. Crea un procedure que faci backup de totes les taules de la BD world 
 incloent les dades. El nom de les taules noves ha d'incloure "_YYYYMMDD" amb la data del dia actual.*/
+DELIMITER $$
+
+CREATE PROCEDURE BackupTablas()
+BEGIN
+    DECLARE acabat INT DEFAULT FALSE;
+    DECLARE taulaActual VARCHAR(255);
+    DECLARE curTablas CURSOR FOR SELECT table_name FROM information_schema.tables WHERE table_schema = 'world';
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET finalizado = TRUE;
+    OPEN curTablas;
+
+    read_loop: LOOP
+        FETCH curTablas INTO tablaActual;
+        IF finalizado THEN
+            LEAVE read_loop;
+        END IF;
+
+        SET @nombreTablaBackup = CONCAT(tablaActual, '_', DATE_FORMAT(CURDATE(), '%Y%m%d'));
+        SET @sqlDinamico = CONCAT('CREATE TABLE ', @nombreTablaBackup, ' AS SELECT * FROM ', tablaActual);
+
+        PREPARE stmt FROM @sqlDinamico;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+    END LOOP;
+
+    CLOSE curTablas;
+END$$
+
+DELIMITER ;
+
+CALL BackupTablas 
+
 
 /*9. Usant PL/SQL desenvolupeu una calculadora usant CASE i IF.
 
@@ -139,6 +172,8 @@ Entrega:
 
 Entregueu el codi complet de la calculadora en un fitxer: CognomNom_Calc.sql
 Entregueu un altre fitxer .sql amb un CALL d'exemple: CognomNom_CallCalc.sql.*/
+
+
 
 /*10. Exercicis de loops i for's: A la BD northwind, fer un bucle que recorri tota la taula Categories i busqui si hi ha una categoria de nom "Seafood". (fer servir la BBDD Northwind) fer sense cursors)
 
