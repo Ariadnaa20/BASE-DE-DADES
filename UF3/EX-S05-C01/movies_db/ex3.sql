@@ -20,9 +20,9 @@ CREATE PROCEDURE calculateRevenue (IN id INT, OUT revenue)
 BEGIN
    SELECT SUM(m.stockUnits*m.price) INTO revenue
    FROM Movies as m
-   WHERE m.id = id
+   WHERE m.id = id 
 END $$
-   
+
 DELIMITER ;
 
 SET  @x=0; --declarem variable per que aixi guardi els valors del procediment OUT
