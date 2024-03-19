@@ -12,8 +12,10 @@ DELIMITER $$
 
 CREATE PROCEDURE getMoviesByName (IN titol VARCHAR(100))
 BEGIN
+   SET @aux= CONCAT('%', titol,  '%')
+   
    SELECT m.name, m.year FROM Movies as m 
-   WHERE m.name LIKE CONCAT('%', titol,  '%'); /*si fessim aixi '%titol%' esta malament ja q buscaria la paraula titol en lloc del contingut 
+   WHERE m.name LIKE @aux; /*si fessim aixi '%titol%' esta malament ja q buscaria la paraula titol en lloc del contingut 
                                                de la variable per aixo hem de fer CONCAT*/
 END $$
 

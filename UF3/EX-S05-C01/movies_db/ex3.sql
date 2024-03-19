@@ -16,16 +16,16 @@ SELECT X;
 Amb aquestes pistes, ja sabeu com s'ha de dir el procedure i quins tipus de paràmetres ha de tenir.
 */
 DELIMITER $$
-CREATE PROCEDURE calculateRevenue (IN id INT, OUT revenue)
+CREATE PROCEDURE calculateRevenue (INOUT var FLOAT)
 BEGIN
-   SELECT SUM(m.stockUnits*m.price) INTO revenue
+   SELECT SUM(m.stockUnits*m.price) INTO var
    FROM Movies as m
    WHERE m.id = id 
 END $$
 
 DELIMITER ;
 
-SET  @x=0; --declarem variable per que aixi guardi els valors del procediment OUT
-CALL calculateRevenue(36, @X) --cridem procediment amb valors. El 1 es el id i el 2 es on guardara el resultat del procediment
-SELECT @X as Revenue; --per recuperar el valor de la variable 
+SET  @aux=46; --declarem variable per que aixi guardi els valors del procediment OUT
+CALL calculateRevenue(@aux) --cridem procediment amb valors. El 1 es el id i el 2 es on guardara el resultat del procediment
+SELECT @aux as Revenue; --per recuperar el valor de la variable 
 
