@@ -2,7 +2,7 @@ CREAR FITXERS
 mysql load data infile 
 --SELECT noms.txt
 SELECT Name
-INTO OUTFILE 'C:/Users/aripa/Downloads/UF3-baseDades.csv/noms.txt'  --ruta abusoluta
+INTO OUTFILE 'C:/Users/aripa/Downloads/UF3-baseDades/noms.txt'  --ruta abusoluta
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 FROM Country;

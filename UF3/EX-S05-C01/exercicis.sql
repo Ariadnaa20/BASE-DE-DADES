@@ -22,8 +22,6 @@ crea una base de datos de backup y desde esta, copia la estructura de las tablas
 CREATE DATABASE northwind_ariadna
 USE northwind_ariadna;
 
-SI HO VOLEM CREAR TOT A LA VEGADA PERO NO ES EL CAS
-INSERT INTO northwind_ariadna SELECT * FROM northwind; 
 
 SI VOLEM CREAR TAULA PER TAULA
 CREATE TABLE bkp_categories LIKE northwind.categories;

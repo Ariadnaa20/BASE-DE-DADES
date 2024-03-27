@@ -125,7 +125,7 @@ BEGIN
     WHERE cl.CountryCode = codiPais;
 
     SELECT COUNT(*)
-    INTO p_numCiutats
+    INTO num_ciutats
     FROM city
     WHERE CountryCode = codiPais;
 
@@ -142,7 +142,7 @@ DROP PROCEDURE IF EXISTS export_CountryLanguage $$
 CREATE PROCEDURE export_CountryLanguage(IN nom_fitxer)
 
 BEGIN
-   SET @NomFitxer = CONCAT("'C:/Users/aripa/Downloads/UF3-baseDades/païsosX", nom_fitxer, ".csv'");
+   SET @NomFitxer = CONCAT("'C:/Users/aripa/Downloads/UF3-baseDades/païsosX ", nom_fitxer, ".csv'");
    SET @Info_CountryLanguage = CONCAT("SELECT * INTO OUTFILE ",@Nom_fitxer, 
         "FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
         LINES TERMINATED BY '\n' 

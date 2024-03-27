@@ -3,9 +3,6 @@ CREATE DATABASE northwind_ariadna
 USE northwind_ariadna;
        
 
-SI HO VOLEM CREAR TOT A LA VEGADA
-INSERT INTO northwind_ariadna SELECT * FROM northwind; 
-
 SI VOLEM CREAR TAULA PER TAULA
 CREATE TABLE bkp_categories LIKE northwind.categories;
 CREATE TABLE bkp_customercustomerdemo LIKE northwind.customercustomerdemo;
